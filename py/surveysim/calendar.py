@@ -121,7 +121,7 @@ def obsCalendar(day1, month1, year1, day2, month2, year2):
                     if entries[23] == "....." or entries[25] == ".....": # Either Moon rise or set time not given
                         if entries[23] == ".....":
                             MJDmoonrise = -1.0
-                            moonset_h = int(entries[24])
+                            moonset_h = int(entries[24])%24 # forces the hour to be between 0..23
                             moonset_m = int(entries[25])
                             yearnew = year
                             monthnew = month
@@ -137,7 +137,7 @@ def obsCalendar(day1, month1, year1, day2, month2, year2):
                             MJDmoonset = (Time(datetime(yearnew, monthnew, daynew, moonset_h, moonset_m, 0, tzinfo=utc_minus7))).mjd
                         else:
                             MJDmoonset = -1.0
-                            moonrise_h = int(entries[23])
+                            moonrise_h = int(entries[23])%24 # forces the hour to be between 0..23
                             moonrise_m = int(entries[24])
                             yearnew = year
                             monthnew = month
